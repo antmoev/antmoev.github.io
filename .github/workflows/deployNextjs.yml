@@ -56,7 +56,7 @@ jobs:
       - name: Install dependencies
         run: deno install
       - name: Build with Next.js
-        run: deno run build #${{ steps.detect-package-manager.outputs.runner }} next build
+        run: npx --no-install next build #${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
