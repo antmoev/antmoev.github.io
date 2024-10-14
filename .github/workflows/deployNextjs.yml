@@ -56,7 +56,7 @@ jobs:
       - name: Install dependencies
         run: deno install
       - name: Build with Next.js
-        run: npx --no-install next build #${{ steps.detect-package-manager.outputs.runner }} next build
+        run: npx --no next build # `deno run build` did not work because of the rel path of some files (** see below)
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -73,3 +73,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+# ** This was the error message. No time to dive into it.: NotFound: No such file or directory (os error 2): lstat '/home/runner/work/antmoev.github.io/antmoev.github.io/out/_next/static/media/463dafcda517f24f-s.p.woff'
